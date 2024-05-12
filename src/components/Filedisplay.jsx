@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
 
-const Filedisplay = () => {
+export default function FileDisplay(props) {
+  const { handleaudioreset, file, audioStream } = props;
   return (
-    <div>Filedisplay</div>
-  )
+    <main className="flex-1 flex flex-col justify-center items-center p-20 gap-3 sm:gap-4 md:gap-5  mx-w-full mx-w-auto">
+      <h1 className="font-semibold text-5xl sm:text-6xl md:text-7xl">
+        Your <span className="text-blue-400 bold">File</span>
+      </h1>
+      <div className=' my-4 mx-auto flex flex-col text-left'>
+        <h3 className='font-semibold'>
+          Name
+        </h3>
+        <p>{file.name}</p> 
+      </div>
+      <div className='flex items-center justify-between gap-4'>
+        <button onClick={handleaudioreset} className=' hover:text-blue-400 duration-200'>Reset</button>
+        <button className='flex items-center font-medium specialbtn px-3 py-2 rounded-lg gap-2 text-blue-400'>
+        <p>Transcribe</p>  <i className="fa-solid fa-pen-nib"></i>
+        </button>
+      </div>
+    </main>
+  );
 }
-
-export default Filedisplay
