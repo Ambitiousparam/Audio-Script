@@ -1,34 +1,41 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Homepage from './components/Homepage';
 import Header from './components/Header';
-import FileDisplay from"./components/Filedisplay"
+import Information from "./components/information";
+import Transcribing from './components/transcribing';
+import FileDisplay from './components/Filedisplay';
 
 function App() {
   const [file, setFile] = useState(null);
   const [audioStream, setAudioStream] = useState(null);
+  const [output, setOutput] = useState(true);
+  const [loading, setoading] = useState(true);
 
-  const isaudioavailable = file || audioStream
+  const isaudioavailable = file || audioStream;
 
- function handleaudioreset(props){
-    setFile(null)
-    setAudioStream(null)
+  function handleaudioreset() {
+    setFile(null);
+    setAudioStream(null);
   }
 
-  useEffect(()=>{
-    console.log(audioStream)
-
-  },[audioStream])
+  useEffect(() => {
+    console.log(audioStream);
+  }, [audioStream]);
 
   return (
-    <div className="flex flex-col m-w-[1000px] m-auto w-full">
+    <div className="flex flex-col max-w-[1000px] m-auto w-full">
       <section className="min-h-screen flex flex-col">
-       <Header/>
-       { isaudioavailable ?(
-        <FileDisplay file ={file} audioStream={setAudioStream} />
-       ):(<Homepage setFile={setFile} setAudioStream={setAudioStream}/>)}
+        <Header />
+        {output ? (
+          <Information />
+        ) : loading ? (
+          <Transcribing />
+        ) : isaudioavailable ? (
+          <FileDisplay file={file} audioStream={audioStream} />
+        ) : (
+          <Homepage setFile={setFile} setAudioStream={setAudioStream} />
+        )}
       </section>
-   
-
       <footer></footer>
     </div>
   );
