@@ -9,7 +9,7 @@ function App() {
   const [file, setFile] = useState(null);
   const [audioStream, setAudioStream] = useState(null);
   const [output, setOutput] = useState(true);
-  const [loading, setoading] = useState(true);
+  const [loading, setoading] = useState(false);
 
   const isaudioavailable = file || audioStream;
 
