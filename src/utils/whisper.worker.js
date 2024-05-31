@@ -102,17 +102,30 @@ class GenerationTracker{
 
 
         }
-        createPartialResultMessage(Result)
+        createPartialResultMessage(result)
     }
     chunkCallback(data){
         this.chunks.push(data)
-        const[text,{chunks}]=this.pipeline.tokenizer._decode_asr{
+        const[text,{chunks}]=this.pipeline.tokenizer._decode_asr(
             this.chunks,
             {
                 time_precision:this.time_precision,
                 return_timestamps:true,
-                force_full_sequence:false
+                force_full_sequence:false,
             }
+        )
+        this.processed_chunks=chunks.map({chunk,index}=>{
+            return this.processed_chunks(chunk,index)
+        })
+
+        createResultMessage{
+            this.processed_chunks,false,this.getLastChunkTimeStamp()
+
+        }
+
+        processChunk(chunk,index){
+            const{text,timestamp}= chunk
+
         }
 
     }
