@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import HomePage from './components/Homepage'
 import Header from './components/Header'
 import FileDisplay from './components/Filedisplay'
-import Information from './components/Information'
+import Information from './components/information'
 import Transcribing from './components/Transcribing'
 import { MessageTypes } from './utils/presets'
 
